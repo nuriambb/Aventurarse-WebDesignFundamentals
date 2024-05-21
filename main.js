@@ -1,7 +1,7 @@
 import './style.css'
 const aventuras = [
   {
-    name: 'Cine de verano en la playa',
+    name: 'Cine en la playa',
     price: 20,
     stars: 5,
     reviews: 200,
@@ -55,7 +55,7 @@ const aventuras = [
       'https://i.pinimg.com/564x/eb/f8/c5/ebf8c53df070fcb78641b4e69ebe471b.jpg'
   },
   {
-    name: 'Descubre las calas más bonitas del levante',
+    name: 'Ruta por calas del levante',
     price: 35,
     stars: 3,
     reviews: 67,
@@ -82,7 +82,7 @@ const aventuras = [
       'https://i.pinimg.com/564x/65/45/11/6545119abf2bb1e5ae173cdf68b24a05.jpg'
   },
   {
-    name: 'Fiesta privada en nuestro yate',
+    name: 'Fiesta privada en yate',
     price: 70,
     stars: 5,
     reviews: 110,
@@ -148,8 +148,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var inputBusqueda = document.createElement('input')
   var nombreMarca = document.createElement('h1')
   var enlacesImagenes = document.createElement('div')
-
-  video.src = './assets/video.mp4'
+  var imagenBanner = document.createElement('img')
+  imagenBanner.className = 'imagen-banner'
+  imagenBanner.src = './assets/banner.jpg'
   enlacesImagenes.className = 'enlaces-imagenes'
   nombreMarca.className = 'marca'
   nombreMarca.textContent = 'aventurarse'
@@ -165,6 +166,8 @@ document.addEventListener('DOMContentLoaded', function () {
   header.appendChild(nombreMarca)
   header.appendChild(enlacesImagenes)
   header.appendChild(inputBusqueda)
+  var divApp = document.querySelector('#app')
+  divApp.insertBefore(imagenBanner, divApp.firstChild)
 
   const sectionaventuras = document.querySelector('#aventuras')
 
@@ -193,6 +196,7 @@ document.addEventListener('DOMContentLoaded', function () {
     mostrarProductosRecomendados(sectionaventuras)
   })
 })
+
 function crearElementoAventura(aventura) {
   const divAventura = document.createElement('div')
   divAventura.className = 'aventura'
@@ -438,3 +442,79 @@ botonLimpiar.addEventListener('click', (e) => {
 })
 
 sectionfilter.appendChild(botonLimpiar)
+
+const dinamicoContainer = document.createElement('div')
+dinamicoContainer.className = 'dinamico-container'
+
+const dinamico = document.createElement('div')
+dinamico.className = 'dinamico'
+
+const enlaces = [
+  'Escucha nuestra playlist',
+  'Imprescindibles del verano',
+  'Descuento por packs',
+  '¿Playa o montaña?',
+  'Descuentos por grupos'
+]
+enlaces.forEach((texto) => {
+  const enlace = document.createElement('a')
+  enlace.href = '#'
+  enlace.textContent = texto
+  dinamico.appendChild(enlace)
+})
+enlaces.forEach((texto) => {
+  const enlace = document.createElement('a')
+  enlace.href = '#'
+  enlace.textContent = texto
+  dinamico.appendChild(enlace)
+})
+dinamicoContainer.appendChild(dinamico)
+document.getElementById('app').appendChild(dinamicoContainer)
+
+var footer = document.createElement('footer')
+footer.className = 'footer'
+var textoFooter = document.createElement('p')
+textoFooter.className = 'texto-footer'
+textoFooter.textContent =
+  '¿Te pica la curiosidad? No te pierdas nada sobre nosotros.Suscríbete a nuestra Newsletter y recibe un 10% de descuento'
+var enviarCorreo = document.createElement('div')
+enviarCorreo.className = 'enviar-correo'
+var inputFooter = document.createElement('input')
+inputFooter.className = 'input-footer'
+inputFooter.type = 'email'
+inputFooter.placeholder = 'Escribe tu correo electrónico'
+var buttonFooter = document.createElement('button')
+buttonFooter.className = 'button-footer'
+buttonFooter.type = 'submit'
+buttonFooter.textContent = 'Enviar'
+var contactoFooter = document.createElement('div')
+contactoFooter.className = 'contacto-footer'
+var enlaceInstagram = document.createElement('a')
+var enlaceFacebook = document.createElement('a')
+var enlacesRedes = document.createElement('div')
+enlacesRedes.className = 'enlaces-redes'
+enlaceInstagram.href = '#'
+enlaceInstagram.innerHTML = '<img src="./assets/insta.png" alt="Instagram">'
+enlaceFacebook.href = '#'
+enlaceFacebook.innerHTML = '<img src="./assets/facebook.png" alt="Facebook">'
+const contactos = [
+  'Contáctanos',
+  'Trabaja con nosotos',
+  'Sobre Aventurarse',
+  'Seguro anti-riesgos'
+]
+contactos.forEach((texto) => {
+  const contactos = document.createElement('a')
+  contactos.href = '#'
+  contactos.textContent = texto
+  contactoFooter.appendChild(contactos)
+})
+enviarCorreo.appendChild(inputFooter)
+enviarCorreo.appendChild(buttonFooter)
+document.getElementById('app').appendChild(footer)
+footer.appendChild(textoFooter)
+footer.appendChild(enviarCorreo)
+footer.appendChild(contactoFooter)
+enlacesRedes.appendChild(enlaceInstagram)
+enlacesRedes.appendChild(enlaceFacebook)
+footer.appendChild(enlacesRedes)

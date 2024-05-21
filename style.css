@@ -12,10 +12,21 @@
   --padding-m: 10px;
   --padding-l: 20px;
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Asegura que el padding y el border se incluyan en el tamaño total de los elementos */
+}
+html,
+body {
+  width: 100%;
+  overflow-x: hidden; /* Evita el scroll horizontal */
+}
 body {
   background-color: var(--background-color);
   font-family: var(--text-font);
   margin: 0;
+  padding: 0;
 }
 
 #myHeader {
@@ -24,6 +35,10 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
+  width: 100%;
+  height: 3.5rem;
+  background-color: #f1dfc900;
+  position: absolute;
 }
 
 h1 {
@@ -43,18 +58,24 @@ img[alt='Mi Cuenta'] {
 img[alt='Carrito'] {
   width: 20px;
 }
-
-input {
-  width: 100px;
-  height: 20px;
+#app {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-
+.imagen-banner {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  grid-column: 1/5;
+}
 #aventuras {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: var(--padding-s);
   gap: 20px;
+  grid-column: 2 / 5;
+  margin-top: 20px;
 }
 .aventura {
   width: 110px;
@@ -72,7 +93,7 @@ input {
   transform: scale(0.9);
 }
 .aventura > img {
-  width: 110px;
+  width: 100px;
   height: 70px;
   object-fit: cover;
   border-radius: 20px;
@@ -98,11 +119,10 @@ input {
 #reviews {
   text-decoration: underline;
 }
-#app {
-  display: flex;
-}
+
 .filter {
   margin-left: 5px;
+  margin-top: 12px;
 }
 .section-recomendados {
   display: flex;
@@ -148,10 +168,14 @@ select option:hover {
 }
 .filtro-letras {
   width: 15em;
+  height: 15px;
   appearance: none;
-  border: 1px solid var(--color4);
   padding: 8px;
   border-radius: 4px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--color1);
+  background: none;
   outline: none;
 }
 .filtro-letras:focus {
@@ -161,7 +185,6 @@ select option:hover {
 .filtro-precio {
   font-size: 12px;
   width: 11.5em;
-  height: 15px;
   appearance: none;
   border: 1px solid var(--color4);
   padding: 8px 10px;
@@ -174,6 +197,152 @@ select option:hover {
   border-color: var(--color1);
   box-shadow: 0 0 5px rgba(102, 175, 233, 0.5);
 }
+
+button {
+  border-radius: 30px;
+  background-color: var(--color1);
+  margin: 10px;
+  font-size: 10px;
+  appearance: none;
+  border: 1px solid var(--color1);
+  padding: 8px 10px;
+  width: 7rem;
+  color: var(--color2);
+}
+button:hover {
+  cursor: pointer;
+}
+
+.dinamico-container {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  grid-column: 1/5;
+  background-color: var(--color3);
+  margin-top: 5px;
+  height: 2em;
+  display: flex;
+  align-items: center;
+}
+
+.dinamico {
+  display: inline-block;
+  animation: dinamico 20s linear infinite;
+}
+
+.dinamico > a {
+  display: inline-block;
+  margin-right: 30px;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--color1);
+  font-size: 13px;
+}
+
+@keyframes dinamico {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+img[alt='Instagram'] {
+  width: 20px;
+}
+img[alt='Instagram']:hover {
+  cursor: pointer;
+}
+img[alt='Facebook'] {
+  width: 20px;
+}
+img[alt='Facebook']:hover {
+  cursor: pointer;
+}
+footer {
+  background-color: var(--color1);
+  grid-column: 1 / 5;
+  padding: 10px;
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.texto-footer {
+  color: var(--color3);
+  font-size: 9px;
+  grid-column: 1/3;
+}
+.enviar-correo {
+  grid-column: 1/3;
+}
+.input-footer {
+  color: var(--color3);
+  font-size: 9px;
+  height: 15px;
+  appearance: none;
+  padding: 8px;
+  border-radius: 4px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--color3);
+  background: none;
+  outline: none;
+}
+.input-footer:focus {
+  border-color: var(--color1);
+  box-shadow: 0 0 5px var(--color3);
+}
+.button-footer {
+  border-radius: 30px;
+  color: var(--color3);
+  background-color: transparent;
+  font-size: 9px;
+  margin: 10px;
+  border: 1px solid var(--color3);
+  width: 4rem;
+}
+.button-footer:hover {
+  cursor: pointer;
+}
+.contacto-footer {
+  font-size: 9px;
+  grid-column: 4 / 5;
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.enlaces-redes {
+  display: grid;
+  grid-column: 5 / 6;
+  grid-row: 1 / 3;
+  justify-self: end;
+  gap: 20p;
+  margin: 5px;
+}
+
+.contacto-footer > a {
+  text-decoration: none;
+  color: var(--color3);
+  font-size: 9px;
+  position: relative;
+}
+.contacto-footer > a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color3);
+  transition: width 1s ease;
+}
+
+.contacto-footer > a:hover::after {
+  width: 60%;
+}
 @media (min-width: 670px) {
   #aventuras {
     justify-content: center;
@@ -183,15 +352,7 @@ select option:hover {
     width: 20%;
   }
 }
-button {
-  font-size: 10px;
-  appearance: none;
-  border: 1px solid var(--color4);
-  padding: 8px 10px;
-  border-radius: 4px;
-  margin-top: 20px;
-  margin-left: 5px;
-}
+
 @media (max-width: 500px) {
   #app {
     display: flex;
@@ -230,5 +391,10 @@ button {
   .section-recomendados > h3 {
     padding-left: 0px;
     justify-content: center;
+  }
+}
+@media (max-width: 270px) {
+  .input-footer {
+    font-size: 8px;
   }
 }
